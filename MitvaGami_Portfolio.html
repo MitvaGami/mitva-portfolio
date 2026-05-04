@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitva Gami | AI & ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050a13;--bg2:#0b1221;--bg3:#0f1a2e;--accent:#00f5c4;--accent2:#0090ff;--accent3:#7c3aed;--text:#e8f0fe;--muted:#7a90b0;--border:rgba(0,245,196,0.15);--card:rgba(11,18,33,0.8);--mono:'Space Mono',monospace;--display:'Syne',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--display);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,245,196,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,196,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.orb1{width:500px;height:500px;background:rgba(0,245,196,0.06);top:-100px;right:-100px}
+.orb2{width:400px;height:400px;background:rgba(0,144,255,0.05);bottom:20%;left:-100px}
+.orb3{width:300px;height:300px;background:rgba(124,58,237,0.06);top:50%;right:10%}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(5,10,19,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:1rem;color:var(--accent);letter-spacing:.05em}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 4rem;position:relative;z-index:1}
+.hero-tag{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.hero-tag::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--accent)}
+.hero-name{font-size:clamp(3rem,8vw,7rem);font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--text);margin-bottom:.5rem}
+.hero-name .highlight{color:var(--accent)}
+.hero-title{font-family:var(--mono);font-size:clamp(.9rem,2vw,1.2rem);color:var(--muted);margin-bottom:2rem;min-height:1.8rem}
+.cursor{display:inline-block;width:2px;height:1.1em;background:var(--accent);margin-left:2px;vertical-align:text-bottom;animation:blink .8s steps(1) infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{max-width:560px;font-size:1rem;line-height:1.7;color:var(--muted);margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.8rem;border-radius:4px;text-decoration:none;transition:all .2s;cursor:pointer;display:inline-block}
+.btn-primary{background:var(--accent);color:var(--bg);border:1px solid var(--accent);font-weight:700}
+.btn-primary:hover{background:transparent;color:var(--accent)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{position:absolute;right:4rem;bottom:8rem;display:flex;flex-direction:column;gap:1.5rem;text-align:right}
+.stat-num{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+.stat-label{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.scroll-hint{position:absolute;bottom:2.5rem;left:4rem;font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;display:flex;align-items:center;gap:1rem}
+.scroll-hint::after{content:'';display:block;width:40px;height:1px;background:var(--muted);animation:scrollline 1.5s ease-in-out infinite}
+@keyframes scrollline{0%,100%{width:40px;opacity:1}50%{width:70px;opacity:.5}}
+section{position:relative;z-index:1;padding:6rem 4rem}
+.section-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:3.5rem}
+.section-num{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.2em}
+.section-title{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+.section-line{flex:1;height:1px;background:var(--border);max-width:300px}
+#about,#projects,#certifications{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.2rem}
+.about-text p strong{color:var(--text)}
+.about-edu{display:flex;flex-direction:column;gap:1rem}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.5rem;position:relative;overflow:hidden}
+.edu-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+.edu-school{font-size:.9rem;font-weight:700;margin-bottom:.3rem}
+.edu-degree{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:.4rem}
+.edu-year{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.1em}
+.cgpa-badge{display:inline-block;background:rgba(0,245,196,.1);border:1px solid rgba(0,245,196,.3);color:var(--accent);font-family:var(--mono);font-size:.65rem;padding:.2rem .6rem;border-radius:3px;margin-top:.4rem}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.skill-category{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:border-color .2s}
+.skill-category:hover{border-color:rgba(0,245,196,.4)}
+.skill-cat-title{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{font-family:var(--mono);font-size:.65rem;padding:.3rem .65rem;border-radius:3px;border:1px solid rgba(255,255,255,.08);color:var(--muted);transition:all .2s}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+.tag.hot{border-color:rgba(0,245,196,.3);color:var(--accent);background:rgba(0,245,196,.05)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.8rem;display:flex;flex-direction:column;gap:1rem;transition:all .25s;position:relative;overflow:hidden}
+.project-card:hover{border-color:rgba(0,245,196,.35);transform:translateY(-3px)}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start}
+.project-icon{width:40px;height:40px;border-radius:8px;background:rgba(0,245,196,.1);border:1px solid rgba(0,245,196,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.project-date{font-family:var(--mono);font-size:.65rem;color:var(--muted)}
+.project-title{font-size:1rem;font-weight:700;color:var(--text)}
+.project-desc{font-size:.85rem;line-height:1.7;color:var(--muted);flex:1}
+.project-tech{display:flex;flex-wrap:wrap;gap:.4rem}
+.tech-tag{font-family:var(--mono);font-size:.6rem;color:var(--accent2);background:rgba(0,144,255,.08);border:1px solid rgba(0,144,255,.2);padding:.2rem .5rem;border-radius:3px}
+.project-link{font-family:var(--mono);font-size:.65rem;color:var(--accent);text-decoration:none;letter-spacing:.08em;display:flex;align-items:center;gap:.4rem;width:fit-content}
+.project-link::after{content:'→';transition:transform .2s}
+.project-link:hover::after{transform:translateX(4px)}
+.achievements-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.achievement-item{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.5rem;transition:border-color .2s}
+.achievement-item:hover{border-color:rgba(0,245,196,.3)}
+.ach-icon{width:36px;height:36px;flex-shrink:0;border-radius:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.ach-text{font-size:.85rem;line-height:1.6;color:var(--muted)}
+.ach-text strong{color:var(--text);display:block;margin-bottom:.2rem}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem;display:flex;gap:1rem;align-items:center;transition:border-color .2s}
+.cert-card:hover{border-color:rgba(0,144,255,.4)}
+.cert-badge{width:42px;height:42px;flex-shrink:0;border-radius:8px;background:rgba(0,144,255,.1);border:1px solid rgba(0,144,255,.25);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.cert-name{font-size:.85rem;font-weight:700;margin-bottom:.25rem}
+.cert-org{font-family:var(--mono);font-size:.65rem;color:var(--accent2)}
+.cert-date{font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.25rem}
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.extra-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;text-align:center;transition:border-color .2s}
+.extra-card:hover{border-color:rgba(0,245,196,.3)}
+.extra-icon{font-size:2rem;margin-bottom:.8rem}
+.extra-title{font-size:.9rem;font-weight:700;margin-bottom:.4rem}
+.extra-sub{font-family:var(--mono);font-size:.65rem;color:var(--muted);line-height:1.5}
+.extra-highlight{font-family:var(--mono);font-size:.65rem;color:var(--accent);margin-top:.5rem;font-weight:700}
+#contact{text-align:center}
+.contact-tagline{font-size:clamp(1.5rem,4vw,3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:1rem}
+.contact-tagline span{color:var(--accent)}
+.contact-sub{font-size:1rem;color:var(--muted);margin-bottom:2.5rem;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.contact-link{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;padding:.8rem 1.6rem;border:1px solid var(--border);border-radius:4px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.6rem;transition:all .2s;text-transform:uppercase}
+.contact-link:hover{border-color:var(--accent);color:var(--accent)}
+.contact-email{font-family:var(--mono);font-size:1rem;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,245,196,.3);padding-bottom:2px}
+footer{position:relative;z-index:1;padding:1.5rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.footer-text{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.1em}
+.footer-text span{color:var(--accent)}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:4rem 1.5rem}#hero{padding:0 1.5rem}.hero-stats{display:none}.about-grid{grid-template-columns:1fr}footer{padding:1.5rem;flex-direction:column;gap:.5rem;text-align:center}}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<nav>
+  <div class="nav-logo"><span>// </span>mitva.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#achievements">achievements</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-tag">Available for opportunities</div>
+  <h1 class="hero-name">Mitva<br><span class="highlight">Gami</span></h1>
+  <div class="hero-title"><span id="typed-text"></span><span class="cursor"></span></div>
+  <p class="hero-desc">B.Tech Computer Engineering student specializing in AI &amp; ML, building intelligent systems that solve real-world problems — from sign language interpreters to supply chain AI.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="mailto:gamimitva@gmail.com" class="btn btn-ghost">Get In Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">8.82</div><div class="stat-label">CGPA</div></div>
+    <div><div class="stat-num">8+</div><div class="stat-label">Projects</div></div>
+    <div><div class="stat-num">4000+</div><div class="stat-label">Teams Beaten</div></div>
+  </div>
+  <div class="scroll-hint">scroll to explore</div>
+</section>
+
+<section id="about">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm a third-year <strong>B.Tech Computer Engineering (AI &amp; ML Honors)</strong> student at MKSSS's Cummins College of Engineering for Women, Pune — passionate about building AI systems that create tangible impact.</p>
+      <p>My work spans <strong>computer vision, NLP, full-stack development, and DevOps</strong>. Whether it's designing real-time sign language interpreters or AI-powered supply chain command centers, I gravitate toward problems where technology meets human need.</p>
+      <p>Currently serving as <strong>Finance Head at the E-Cell</strong> and <strong>Technical Architect at Microsoft Student Chapter</strong>, I bring both technical depth and leadership to every team I join.</p>
+    </div>
+    <div class="about-edu fade-in">
+      <div class="edu-card">
+        <div class="edu-school">MKSSS's Cummins College of Engineering</div>
+        <div class="edu-degree">B.Tech Computer Engineering (AI &amp; ML Honors)</div>
+        <div class="edu-year">2023 — 2027</div>
+        <div class="cgpa-badge">CGPA: 8.82 | Highest SGPA: 9.3</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">Ryan International School</div>
+        <div class="edu-degree">12th — CBSE Board</div>
+        <div class="edu-year">2022 — 2023</div>
+        <div class="cgpa-badge">Score: 90%</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">Shantiniketan Public School</div>
+        <div class="edu-degree">10th — CBSE Board</div>
+        <div class="edu-year">2020 — 2021</div>
+        <div class="cgpa-badge">Score: 93.5%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-category fade-in">
+      <div class="skill-cat-title">Languages</div>
+      <div class="skill-tags">
+        <span class="tag hot">Python</span><span class="tag hot">Java</span><span class="tag hot">JavaScript</span><span class="tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-category fade-in">
+      <div class="skill-cat-title">AI / ML</div>
+      <div class="skill-tags">
+        <span class="tag hot">TensorFlow</span><span class="tag hot">OpenCV</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-learn</span>
+      </div>
+    </div>
+    <div class="skill-category fade-in">
+      <div class="skill-cat-title">Backend / DevOps</div>
+      <div class="skill-tags">
+        <span class="tag hot">FastAPI</span><span class="tag hot">Docker</span><span class="tag hot">GitHub Actions</span><span class="tag">Flask</span><span class="tag">Node.js</span>
+      </div>
+    </div>
+    <div class="skill-category fade-in">
+      <div class="skill-cat-title">Databases &amp; Cloud</div>
+      <div class="skill-tags">
+        <span class="tag hot">MySQL</span><span class="tag">SQLite</span><span class="tag">Microsoft Azure</span><span class="tag">Spark</span><span class="tag">Hadoop</span>
+      </div>
+    </div>
+    <div class="skill-category fade-in">
+      <div class="skill-cat-title">Tools &amp; Visualization</div>
+      <div class="skill-tags">
+        <span class="tag hot">Power BI</span><span class="tag">Git/GitHub</span><span class="tag">Mapbox GL JS</span><span class="tag">vis.js</span>
+      </div>
+    </div>
+    <div class="skill-category fade-in">
+      <div class="skill-cat-title">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="tag">Leadership</span><span class="tag">Problem-Solving</span><span class="tag">Collaboration</span><span class="tag">Analytical Thinking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#128737;</div><span class="project-date">2025</span></div>
+      <div class="project-title">Defense Swarm</div>
+      <div class="project-desc">AI-powered adaptive cybersecurity using multi-agent architecture. Intent Analysis + Behavioral Velocity agents with dynamic honeypots, OTP verification, and active blocking. Built on Azure Functions with Streamlit dashboard.</div>
+      <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Azure Functions</span><span class="tech-tag">Streamlit</span><span class="tech-tag">Ollama LLM</span></div>
+      <a href="#" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#129310;</div><span class="project-date">Nov 2025</span></div>
+      <div class="project-title">AI Sign Language Interpreter</div>
+      <div class="project-desc">Real-time ASL sign-to-text and text-to-speech using MobileNetV2 transfer learning. 90% validation accuracy, 1-2s real-time inference, bridging communication for deaf/mute communities worldwide.</div>
+      <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">TensorFlow</span><span class="tech-tag">OpenCV</span><span class="tech-tag">Flask</span><span class="tech-tag">MobileNetV2</span></div>
+      <a href="#" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#128666;</div><span class="project-date">2025</span></div>
+      <div class="project-title">Walmart Risk Radar</div>
+      <div class="project-desc">AI supply chain resilience command center simulating real-time disruptions across a DC-store network. Automated decision engine recommends optimal rerouting with live Mapbox GL visualization.</div>
+      <div class="project-tech"><span class="tech-tag">Node.js</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Mapbox GL JS</span><span class="tech-tag">REST API</span></div>
+      <a href="#" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#128230;</div><span class="project-date">2025</span></div>
+      <div class="project-title">Inventory &amp; Stock Alert System</div>
+      <div class="project-desc">Production-grade containerized inventory REST API with full CI/CD. GitHub Actions → pytest/Selenium → Docker → Render deployment. Live system with automated low-stock alerts and Swagger docs.</div>
+      <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">FastAPI</span><span class="tech-tag">Docker</span><span class="tech-tag">GitHub Actions</span><span class="tech-tag">Selenium</span></div>
+      <a href="https://inventory-stock-alert.onrender.com" class="project-link">View Live</a>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#128739;</div><span class="project-date">Oct 2025</span></div>
+      <div class="project-title">RoadScan-AI</div>
+      <div class="project-desc">End-to-end noise-resilient pothole detection pipeline combining BM3D denoising, log-domain restoration, CLAHE, and CNN-based binary classification from severely degraded road images.</div>
+      <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">OpenCV</span><span class="tech-tag">BM3D</span><span class="tech-tag">TensorFlow</span></div>
+      <a href="#" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#127918;</div><span class="project-date">Apr 2025</span></div>
+      <div class="project-title">The Arcade Exchange</div>
+      <div class="project-desc">Full-stack Java desktop app with demand-responsive dynamic pricing engine simulating stock-market-style price adjustments. Java Swing GUI, MySQL, JDBC for customer management and game transactions.</div>
+      <div class="project-tech"><span class="tech-tag">Java</span><span class="tech-tag">MySQL</span><span class="tech-tag">JDBC</span><span class="tech-tag">Java Swing</span></div>
+      <a href="#" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#128506;</div><span class="project-date">2025</span></div>
+      <div class="project-title">TransitPath</div>
+      <div class="project-desc">Metro route optimizer using Dijkstra's algorithm for shortest paths and DFS for alternatives. Zone-based fare calculation with student and senior discounts, rendered on interactive vis.js graphs.</div>
+      <div class="project-tech"><span class="tech-tag">JavaScript</span><span class="tech-tag">Dijkstra's</span><span class="tech-tag">DFS</span><span class="tech-tag">vis.js</span></div>
+      <a href="#" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-header"><div class="project-icon">&#127968;</div><span class="project-date">2025</span></div>
+      <div class="project-title">Real Estate AI Assistant</div>
+      <div class="project-desc">Conversational AI for automated lead qualification using Rasa NLU with DIETClassifier. Dynamic SQLite property queries, guided form-filling, and 24/7 Flask web UI for real estate firms.</div>
+      <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Rasa NLU</span><span class="tech-tag">SQLite</span><span class="tech-tag">Flask</span><span class="tech-tag">NLP</span></div>
+      <a href="#" class="project-link">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Achievements</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="achievements-list">
+    <div class="achievement-item fade-in">
+      <div class="ach-icon">&#127942;</div>
+      <div class="ach-text"><strong>Finance Head — E-Cell</strong>Managing financial operations for Entrepreneurship Cell, 2025–2026</div>
+    </div>
+    <div class="achievement-item fade-in">
+      <div class="ach-icon">&#128187;</div>
+      <div class="ach-text"><strong>Technical Architect — Microsoft Student Chapter</strong>Leading technical architecture and initiatives, 2025–2026</div>
+    </div>
+    <div class="achievement-item fade-in">
+      <div class="ach-icon">&#129351;</div>
+      <div class="ach-text"><strong>Rank 1 — Cipher 6.1 Coding Contest</strong>First place in competitive coding contest</div>
+    </div>
+    <div class="achievement-item fade-in">
+      <div class="ach-icon">&#128640;</div>
+      <div class="ach-text"><strong>Smart India Hackathon 2024</strong>Selected in internal hackathon with working prototype</div>
+    </div>
+    <div class="achievement-item fade-in">
+      <div class="ach-icon">&#128274;</div>
+      <div class="ach-text"><strong>Top 10 — Cybersecurity CTF</strong>Top 10 finalist in Cybersecurity Club's Capture The Flag</div>
+    </div>
+    <div class="achievement-item fade-in">
+      <div class="ach-icon">&#127919;</div>
+      <div class="ach-text"><strong>Top 20 / 4000+ Teams — NEC IIT Bombay</strong>National Entrepreneurship Challenge finalist</div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="section-header fade-in">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card fade-in">
+      <div class="cert-badge">&#129504;</div>
+      <div>
+        <div class="cert-name">LLM Applications with Prompt Engineering</div>
+        <div class="cert-org">NVIDIA</div>
+        <div class="cert-date">May 2025</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-badge">&#128200;</div>
+      <div>
+        <div class="cert-name">Machine Learning Course</div>
+        <div class="cert-org">IIT Madras</div>
+        <div class="cert-date">August 2024</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-badge">&#9881;</div>
+      <div>
+        <div class="cert-name">DevOps Fundamentals (20PECE 601A)</div>
+        <div class="cert-org">Cummins College of Engineering</div>
+        <div class="cert-date">2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="extra">
+  <div class="section-header fade-in">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Beyond Code</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="extra-grid">
+    <div class="extra-card fade-in">
+      <div class="extra-icon">&#9917;</div>
+      <div class="extra-title">Football</div>
+      <div class="extra-sub">Pune City Zonal Sports</div>
+      <div class="extra-highlight">Rank 2</div>
+    </div>
+    <div class="extra-card fade-in">
+      <div class="extra-icon">&#129496;</div>
+      <div class="extra-title">Yoga</div>
+      <div class="extra-sub">College Team Member</div>
+      <div class="extra-highlight">Competitive</div>
+    </div>
+    <div class="extra-card fade-in">
+      <div class="extra-icon">&#128161;</div>
+      <div class="extra-title">Entrepreneurship</div>
+      <div class="extra-sub">Finance Head, E-Cell</div>
+      <div class="extra-highlight">Leadership</div>
+    </div>
+    <div class="extra-card fade-in">
+      <div class="extra-icon">&#129695;</div>
+      <div class="extra-title">Microsoft Chapter</div>
+      <div class="extra-sub">Technical Architect</div>
+      <div class="extra-highlight">Architecture</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-header fade-in" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Contact</h2>
+  </div>
+  <div class="contact-tagline fade-in">Let's build something<br><span>remarkable.</span></div>
+  <p class="contact-sub fade-in">Open to internships, project collaborations, and research opportunities. Based in Pune, Maharashtra.</p>
+  <div class="contact-links fade-in">
+    <a href="mailto:gamimitva@gmail.com" class="contact-link">Email</a>
+    <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
+    <a href="https://github.com" class="contact-link">GitHub</a>
+    <a href="https://leetcode.com" class="contact-link">LeetCode</a>
+  </div>
+  <a href="mailto:gamimitva@gmail.com" class="contact-email fade-in">gamimitva@gmail.com</a>
+</section>
+
+<footer>
+  <div class="footer-text">2026 <span>Mitva Ketankumar Gami</span></div>
+  <div class="footer-text">Pune, Maharashtra <span>|</span> +91 8452061962</div>
+</footer>
+
+<script>
+const phrases=['AI & ML Engineer','Computer Vision Developer','Full-Stack Builder','Problem Solver','B.Tech CSE (AI & ML Honors)'];
+let pi=0,ci=0,del=false;
+const el=document.getElementById('typed-text');
+function type(){
+  const cur=phrases[pi];
+  if(!del){el.textContent=cur.slice(0,++ci);if(ci===cur.length){del=true;setTimeout(type,1800);return}}
+  else{el.textContent=cur.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length}}
+  setTimeout(type,del?50:80);
+}
+type();
+
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      const siblings=Array.from(e.target.parentElement?.children||[]);
+      const idx=siblings.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('visible'),Math.max(0,idx)*80);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
